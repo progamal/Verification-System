@@ -1,0 +1,19 @@
+@startuml Verify
+actor User
+participant "Verification System" as VS
+participant "SMS Service" as SMS
+
+title Verification System
+User -> VS: Enter phone number
+VS -> User: Generate and display verification code
+VS -> SMS: Send verification code to phone number
+SMS -> User: Deliver verification code via SMS
+
+User -> VS: Enter received verification code
+VS -> VS: Verify entered code
+alt Verification Successful
+    VS -> User: Display success message
+else Verification Failed
+    VS -> User: Display error message
+end
+@enduml
